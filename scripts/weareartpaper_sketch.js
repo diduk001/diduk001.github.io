@@ -15,10 +15,6 @@ ALL OF THEM ARE FREE FOR COMMERCIAL USE
 const Y_AXIS = 1;
 const X_AXIS = 2;
 
-const K = window.innerWidth / (186 * 4);
-const WIDTH = 186 * K;
-const HEIGHT = 263 * K;
-
 const font_names = ["Arina.ttf",
     "DAMN.ttf",
     "HSEFonts_Gernik_Mikhail.ttf",
@@ -94,6 +90,18 @@ function star(x, y, radius1, radius2, npoints) {
 }
 
 function setup() {
+    // desktop
+    if (window.innerWidth >= window.innerHeight) {
+        var K = window.innerWidth / (186 * 4);
+    }
+    // phone
+    else {
+        var K = window.innerHeight / (263 * 1.5);
+    }
+    const WIDTH = 186 * K;
+    const HEIGHT = 263 * K;
+
+
     // colormode
     colorMode(HSB, 100);
 
@@ -172,20 +180,20 @@ function setup() {
 
     // text
     textAlign(CENTER, CENTER);
-    
+
     let font_size = randInt(40, 100);
     textSize(font_size);
-    
+
     let first_letter_font = fonts[randInt(0, fonts.length - 1)];
     let first_letter_color = generateRandBrightColor();
     let first_letter_x = randInt(50, WIDTH - 100);
     let first_letter_y = randInt(50, HEIGHT - 100);
-    
+
     let second_letter_font = fonts[randInt(0, fonts.length - 1)];
     let second_letter_color = generateRandBrightColor();
     let second_letter_x = randInt(first_letter_x + 60, WIDTH - 10);
     let second_letter_y = first_letter_y
-    
+
     // text
     textFont(second_letter_font);
     fill(second_letter_color);
@@ -193,5 +201,7 @@ function setup() {
 
     textFont(first_letter_font);
     fill(first_letter_color);
-    text("В", first_letter_x, first_letter_y);    
+    text("В", first_letter_x, first_letter_y);
+
+    noLoop();
 }
